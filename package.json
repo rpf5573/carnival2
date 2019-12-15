@@ -35,7 +35,7 @@
     "build-warehouse": "cd ./src/warehouse/warehouse-client && yarn install && yarn build-pro",
     "build-media-files": "cd ./src/media-files/media-files-client && yarn install && yarn build-pro",
     "build-all": "yarn install && yarn build-admin && yarn build-assist && yarn build-entrance && yarn build-user && yarn build-warehouse && yarn build-media-files",
-    "start-pro": "NODE_ENV=production NODE_PORT=8080 pm2 start src/index.js --name carnival",
+    "start-pro": "NODE_ENV=production NODE_PORT=8081 pm2 start src/index.js --name carnival",
     "restart": "pm2 delete all && yarn start-pro"
   }
 }
