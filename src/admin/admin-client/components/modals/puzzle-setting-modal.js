@@ -3,7 +3,7 @@ import * as constants from '../../../../utils/constants';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, Row, Col, InputGroup, Label, Dropdown, DropdownToggle, DropdownItem, DropdownMenu } from 'reactstrap';
-import { closeModal, updatePuzzleBoxCount, updateEniacWords, updateRandomEniacWords, updateLastBoxUrl, updateLastBoxState } from '../../actions';
+import { closeModal, updatePuzzleBoxCount, updateEniacWords, updateRandomEniacWords, updateLastBoxUrl, updateLastBoxState, updateBoxTentState } from '../../actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
@@ -29,6 +29,7 @@ class PuzzleSettingModal extends React.Component {
     this.updateLastBoxUrl = this.updateLastBoxUrl.bind(this);
 
     this.updateLastBoxState = this.updateLastBoxState.bind(this);
+    this.updateBoxTentState = this.updateBoxTentState.bind(this);
   }
 
   close() {
@@ -129,6 +130,23 @@ class PuzzleSettingModal extends React.Component {
     });
   }
 
+  async updateBoxTentState(e) {
+    const val = parseInt(e.currentTarget.value);
+
+    const config = {
+      method: 'POST',
+      url: '/admin/puzzle-settings/box-tent-state',
+      data: {
+        boxTentState: val
+      }
+    };
+
+    utils.simpleAxios(axios, config).then(() => {
+      this.props.updateBoxTentState(val);
+      alert("성공");
+    });
+  }
+
   renderPuzzleBoxCountDropdownMenuItems() {
     let counts = [0, 20, 24, 30, 35, 40, 48, 54, 60, 66];
     var list = [];
@@ -206,6 +224,17 @@ class PuzzleSettingModal extends React.Component {
               </div>
             </Col>
             <Col xs="6">
+              <div className="d-flex">
+                <span className="mr-3"> 유저페이지에 공개 여부 : </span>
+                <div className="radio abc-radio abc-radio-primary mr-3">
+                  <input type="radio" id="boxTentStateRadioInput01" onChange={this.updateBoxTentState} checked={ this.props.boxTentState ? true : false } value={constants.ON}/>
+                  <label htmlFor="boxTentStateRadioInput01">공개</label>
+                </div>
+                <div className="radio abc-radio abc-radio-danger">
+                  <input type="radio" id="boxTentStateRadioInput02" onChange={this.updateBoxTentState} checked={ this.props.boxTentState ? false : true } value={constants.OFF}/>
+                  <label htmlFor="boxTentStateRadioInput02">비공개</label>
+                </div>
+              </div>
             </Col>
           </Row>
         </ModalBody>
@@ -221,8 +250,9 @@ function mapStateToProps(state, ownProps) {
     eniacWords: state.puzzleSettings.eniacWords,
     eniacState: state.puzzleSettings.eniacState,
     lastBoxUrl: state.puzzleSettings.lastBoxUrl,
-    lastBoxState: state.puzzleSettings.lastBoxState
+    lastBoxState: state.puzzleSettings.lastBoxState,
+    boxTentState: state.puzzleSettings.boxTentState,
   };
 }
 
-export default connect(mapStateToProps, { closeModal, updatePuzzleBoxCount, updateEniacWords, updateRandomEniacWords, updateLastBoxUrl, updateLastBoxState })(PuzzleSettingModal);
+export default connect(mapStateToProps, { closeModal, updatePuzzleBoxCount, updateEniacWords, updateRandomEniacWords, updateLastBoxUrl, updateLastBoxState, updateBoxTentState })(PuzzleSettingModal);

@@ -94,7 +94,7 @@ class App extends Component {
             </Switch>
           </div>
           <div className="l-bottom">
-            <BottomNavigation puzzleBoxCount={this.props.puzzleBoxCount}></BottomNavigation>
+            <BottomNavigation puzzleBoxCount={this.props.puzzleBoxCount} boxTentState={this.props.boxTentState}></BottomNavigation>
           </div>
           {this.renderAlertModal()}
         </div>
@@ -107,7 +107,8 @@ class App extends Component {
 function mapStateToProps(state, ownProps) {
   console.log( 'state : ', state );
   return {
-    puzzleBoxCount: state.puzzleBoxCount
+    puzzleBoxCount: state.puzzleBoxCount,
+    boxTentState: state.boxTentState
   };
 }
 
