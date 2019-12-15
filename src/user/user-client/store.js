@@ -11,6 +11,7 @@ export default function configureStore(initialSettings = {}) {
   initialSettings.randomEniacWords = JSON.parse(initialSettings.randomEniacWords); // 실패할일 없음 어차피 null도 받으니까
   initialSettings.lastBoxState = parseInt(initialSettings.lastBoxState);
   initialSettings.boxTentState = parseInt(initialSettings.boxTentState);
+  initialSettings.pointTentState = parseInt(initialSettings.pointTentState);
   initialSettings.tempBoxState = parseInt(initialSettings.tempBoxState);
   initialSettings.laptime = parseInt(initialSettings.laptime);
   initialSettings.puzzleBoxCount = parseInt(initialSettings.puzzleBoxCount);

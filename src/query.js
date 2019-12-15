@@ -26,7 +26,7 @@ class DCQuery {
       case 'admin':
         var teamCount = await this.teamPasswords.getTeamCount();
         var teamPasswords = await this.teamPasswords.getAll();
-        var metas = await this.metas.get(['laptime', 'companyImage', 'map', 'puzzleBoxCount', 'originalEniacWords', 'randomEniacWords', 'lastBoxUrl', 'eniacState', 'tempBoxState', 'lastBoxState', 'adminPasswords', 'mappingPoints', 'boxTentState']);
+        var metas = await this.metas.get(['laptime', 'companyImage', 'map', 'puzzleBoxCount', 'originalEniacWords', 'randomEniacWords', 'lastBoxUrl', 'eniacState', 'tempBoxState', 'lastBoxState', 'adminPasswords', 'mappingPoints', 'boxTentState', 'pointTentState']);
         var teamTimers = await this.timers.getAll();
         var postInfos = await this.postInfos.getAll();
         return {
@@ -38,7 +38,7 @@ class DCQuery {
         };
 
       case 'user':
-        var metas = await this.metas.get(['laptime', 'companyImage', 'map', 'puzzleBoxCount', 'originalEniacWords', 'randomEniacWords', 'tempBoxState', 'lastBoxUrl', 'lastBoxState', 'boxTentState', 'mappingPoints']);
+        var metas = await this.metas.get(['laptime', 'companyImage', 'map', 'puzzleBoxCount', 'originalEniacWords', 'randomEniacWords', 'tempBoxState', 'lastBoxUrl', 'lastBoxState', 'boxTentState', 'pointTentState', 'mappingPoints']);
         var teamCount = await this.teamPasswords.getTeamCount();
         var points = await this.points.get('useable');
         var puzzleColonInfos = await this.puzzles.getAll();

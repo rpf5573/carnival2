@@ -206,6 +206,16 @@ module.exports = (app, DCQuery, upload) => {
     res.sendStatus(201);
     return;
   });
+  app.post('/admin/puzzle-settings/point-tent-state', async (req, res) => {
+    let result = await DCQuery.metas.update('pointTentState', req.body.pointTentState);
+    if ( result.err ) {
+      return res.status(201).json({
+        error: result.err
+      });
+    }
+    res.sendStatus(201);
+    return;
+  });
 
   // points
   app.post('/admin/points/reward', async (req, res) => {
@@ -235,16 +245,6 @@ module.exports = (app, DCQuery, upload) => {
         error: e
       });
     }
-  });
-  app.post('/admin/points/point-tent-state', async (req, res) => {
-    let result = await DCQuery.metas.update('pointTentState', req.body.pointTentState);
-    if ( result.err ) {
-      return res.status(201).json({
-        error: result.err
-      });
-    }
-    res.sendStatus(201);
-    return;
   });
 
   // admin passwords

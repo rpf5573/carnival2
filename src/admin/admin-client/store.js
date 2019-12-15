@@ -40,6 +40,7 @@ export default function configureStore(initialSettings) {
       lastBoxUrl: decodeURI(initialSettings.lastBoxUrl),
       lastBoxState: parseInt(initialSettings.lastBoxState),
       boxTentState: parseInt(initialSettings.boxTentState),
+      pointTentState: parseInt(initialSettings.pointTentState),
     },
     adminPasswords: JSON.parse(initialSettings.adminPasswords),
     mappingPoints: JSON.parse(initialSettings.mappingPoints),

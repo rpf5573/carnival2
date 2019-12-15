@@ -1,4 +1,4 @@
-import { UPDATE_PUZZLE_BOX_COUNT, UPDATE_ENIAC_WORDS, UPDATE_RANDOM_ENIAC_WORDS, UPDATE_LASTBOX_URL, UPDATE_LASTBOX_STATE, UPDATE_BOX_TENT_STATE } from '../actions/types';
+import { UPDATE_PUZZLE_BOX_COUNT, UPDATE_ENIAC_WORDS, UPDATE_RANDOM_ENIAC_WORDS, UPDATE_LASTBOX_URL, UPDATE_LASTBOX_STATE, UPDATE_BOX_TENT_STATE, UPDATE_POINT_TENT_STATE } from '../actions/types';
 
 export default function(state = {
   puzzleBoxCount: 20
@@ -32,6 +32,11 @@ export default function(state = {
     case UPDATE_BOX_TENT_STATE:
       return Object.assign({}, state, {
         boxTentState: action.payload
+      });
+
+    case UPDATE_POINT_TENT_STATE:
+      return Object.assign({}, state, {
+        pointTentState: action.payload
       });
     
     default:
